@@ -69,11 +69,11 @@ def user_workout():
     
     db.session.add(workout)
     db.session.commit()
-    flash('Your workout has been added!', category='success')
+    flash('Your Task has been added!', category='success')
     return redirect(url_for('views.user_workouts'))
 
 
-@views.route("/workout/<int:workout_id>/update", methods=['GET', 'POST'])
+@views.route("/Task/<int:workout_id>/update", methods=['GET', 'POST'])
 @login_required
 def update_workout(workout_id):
     workout = Task.query.get_or_404(workout_id)
@@ -85,7 +85,7 @@ def update_workout(workout_id):
         workout.start = datetime.strptime(start, "%Y-%m-%dT%H:%M")
         workout.end = datetime.strptime(end, "%Y-%m-%dT%H:%M")
         db.session.commit()
-        flash('Your post has been updated!', category='success')
+        flash('Your Task has been updated!', category='success')
         return redirect(url_for('views.user_workouts'))
 
     return render_template('update_workout.html', workout=workout, user=current_user)
@@ -97,7 +97,7 @@ def delete_workout(workout_id):
     workout.deleted = True
     db.session.delete(workout)
     db.session.commit()
-    flash('Your post has been deleted!')
+    flash('Your Task has been deleted!')
     return redirect(url_for('views.user_workouts'))
 
 
@@ -210,7 +210,7 @@ def group_workout():
     )
     db.session.add(workout)
     db.session.commit()
-    flash('Your workout has been added!', category='success')
+    flash('Your Task has been added!', category='success')
     return redirect(url_for('views.groups'))
 
 @views.route("/group/<int:group_id>/delete", methods=['GET', 'POST'])
@@ -219,7 +219,7 @@ def delete_group_task(group_id):
     group = Group.query.get_or_404(group_id)
     db.session.delete(group)
     db.session.commit()
-    flash('Your post has been deleted!')
+    flash('Your Task has been deleted!')
     return redirect(url_for('views.groups'))
 
 
@@ -236,7 +236,7 @@ def update_group_task(group_id):
         group.start = datetime.strptime(start, "%Y-%m-%dT%H:%M")
         group.end = datetime.strptime(end, "%Y-%m-%dT%H:%M")
         db.session.commit()
-        flash('Your post has been updated!', category='success')
+        flash('Your Task has been updated!', category='success')
         return redirect(url_for('views.groups'))
 
     return render_template('update_task_group.html', group=group, user=current_user)
@@ -260,7 +260,7 @@ def create_comment(post_id):
             db.session.add(comment)
             db.session.commit()
         else:
-            flash('Post does not exist.', category='error')
+            flash('Task does not exist.', category='error')
 
     return redirect(url_for('views.groups'))
 
