@@ -14,6 +14,7 @@
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- My CSS -->
 	<link rel="stylesheet" href="{{ url_for('static', filename= 'style.css') }}">
+	<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename= './img/V2.png') }}">
 
 	<title>AdminHub</title>
 </head>
@@ -241,18 +242,6 @@
 
 
 
-<li class="completed">
-	{% if task|length > 0 %}
-  <a data-bs-toggle="collapse" style="color:#8e37eb;" href="#comments-{{task.id}}" role="button">
-	<small>View {{task|length}} tasks</small>
-  </a>
-  {% else %}
-  <small class="text-muted">No tasks</small>
-  {% endif %}
-</li>
-
-
-
 
 <a href="/groups">
 	<i class='bx bxs-group' ></i>
@@ -261,7 +250,7 @@
 
 <a href="/calender">
 	<i class='bx bx-calendar-event' ></i>
-	<span class="text">calender</span>
+	<span class="text">calander</span>
 </a>
 
 <a href="{{ url_for('auth.profile', user_id=user.id) }}">
