@@ -108,7 +108,7 @@ def completed_workout(id):
     workout.deleted = True
     db.session.delete(workout)
     db.session.commit()
-    flash('Your post has been completed!')
+    flash('Your Task has been completed!')
     return redirect(url_for('views.user_workouts'))
 
 
