@@ -35,7 +35,7 @@ To install and set up TaskZenith on your local machine, please follow the instru
 1. Open your terminal or command prompt.
 2. Navigate to the directory where you want to clone the TaskZenith repository.
 3. Run the following command to clone the repository:
-git clone https://github.com/your-username/taskzenith.git
+git clone [https://github.com/your-username/taskzenith.git](https://github.com/EL-Mehdiri/PFA.git)
 Replace `your-username` with your GitHub username.
 
 ### Install Dependencies
@@ -57,14 +57,13 @@ Replace `your-username` with your GitHub username.
 
 ### Configure the Application
 
-1. Rename the `.env.example` file to `.env`.
-2. Open the `.env` file in a text editor.
-3. Configure the database connection by setting the `DATABASE_URI` variable. For example: DATABASE_URI = 'sqlite:///database.db'
-4. Save and close the `.env` file.
+
+1. Configure the database connection by setting the `DATABASE_URI` variable. For example: DATABASE_URI = 'sqlite:///database.db'
+
 
 ### Run the Application
 
-1. Run the following command to start the application: flask run
+1. Run the following command to start the application: fpython main.py
 ---
 
 Happy task management with TaskZenith!
