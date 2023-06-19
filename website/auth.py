@@ -21,13 +21,18 @@ def login():
                 flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
                 return redirect(url_for('views.home'))
+            if current_user.email == "admin@admin.com":
+                return redirect("/admin/")
+            
             else:
                 flash('Incorrect password, try again.', category='error')
+                return redirect(url_for('auth.login'))
+                
         else:
             flash('Email does not exist.', category='error')
+        
 
     return render_template("login.html", user=current_user)
-
 
 @auth.route('/logout')
 @login_required
@@ -46,7 +51,7 @@ def sign_up():
         job = request.form.get('job')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
-
+        
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists.', category='error')
@@ -65,6 +70,7 @@ def sign_up():
             db.session.commit()
             flash('Account created!', category='success')
             return redirect(url_for('auth.login'))
+        
 
     return render_template("signup.html", user=current_user)
 

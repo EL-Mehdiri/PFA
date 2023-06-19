@@ -25,7 +25,7 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
     
-    from .models import User , Task,  Comment, Group
+    from .models import User , Task,  Comment, Group, UserView, TaskView, GroupView, CommentView
     
     login = LoginManager(app)
     
@@ -33,26 +33,25 @@ def create_app():
     def load_user(user_id):
         return User.query.get(user_id)
     
-    class MyModelView(ModelView):
-        def is_accessible(self):
-            return current_user.is_authenticated
+    # class MyModelView(ModelView):
+    #     def is_accessible(self):
+    #         return current_user.is_authenticated
         
-        def inaccessible_callback(self, name, **kwargs):
-            return redirect(url_for('auth.login'))
+    #     def inaccessible_callback(self, name, **kwargs):
+    #         return redirect(url_for('auth.login'))
 
-    class MyAdminIndexView(AdminIndexView):
-        def is_accessible(self):
-            return current_user.is_authenticated
-        def inaccessible_callback(self, name, **kwargs):
-            return redirect(url_for('auth.login'))
+    # class MyAdminIndexView(AdminIndexView):
+    #     def is_accessible(self):
+    #         return current_user.is_authenticated
+    #     def inaccessible_callback(self, name, **kwargs):
+    #         return redirect(url_for('auth.login'))
     
     
-    admin = Admin(app, index_view=MyAdminIndexView())
-    
-    admin.add_view(MyModelView(User, db.session))
-    admin.add_view(MyModelView(Task, db.session))
-    admin.add_view(MyModelView(Comment, db.session))
-    admin.add_view(MyModelView(Group, db.session))
+    admin = Admin(app,  name="Task Zineth")
+    admin.add_view(UserView(User, db.session))
+    admin.add_view(TaskView(Task, db.session))
+    admin.add_view(CommentView(Comment, db.session))
+    admin.add_view(GroupView(Group, db.session))
     create_database(app)
     
     login_manager = LoginManager()
@@ -69,22 +68,3 @@ def create_database(app):
         with app.app_context():
             db.create_all()
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-           

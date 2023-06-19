@@ -278,3 +278,12 @@ def delete_comment(comment_id):
         db.session.delete(comment)
         db.session.commit()
     return redirect(url_for('views.groups'))
+
+@views.errorhandler(404)
+def error(e):
+    return render_template("signup.html"), 404
+
+
+@views.errorhandler(500)
+def internal_error(e):
+    return render_template("signup.html"), 500
