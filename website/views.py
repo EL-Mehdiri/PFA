@@ -119,7 +119,7 @@ def calender():
     user = User.query.filter_by(email=current_user.email).first_or_404()
     events = Task.query.filter_by(author=user).order_by(Task.date_posted.desc())
     group = Group.query.filter_by(author=user).order_by(Group.date_posted.desc())
-    #  = Task.query.all()
+   
     
     calendar_events = []
     for event in events:

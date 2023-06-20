@@ -59,7 +59,6 @@ class Group(db.Model):
     descreption = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.firsname'), nullable=False)
     comments = db.relationship('Comment', backref='Group', passive_deletes=True)
-    # group_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
