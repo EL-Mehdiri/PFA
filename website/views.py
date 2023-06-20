@@ -1,4 +1,4 @@
-from flask import  Blueprint, render_template, request, flash, redirect, url_for,jsonify
+from flask import  Blueprint, render_template, request, flash, redirect, url_for,jsonify, abort
 from flask_login import  login_required, current_user
 from .models import Task, User, Group,Comment
 from . import db
@@ -279,11 +279,8 @@ def delete_comment(comment_id):
         db.session.commit()
     return redirect(url_for('views.groups'))
 
+
 @views.errorhandler(404)
-def error(e):
-    return render_template("signup.html"), 404
+def not_found(error):
+    return render_template('404.html'), 404
 
-
-@views.errorhandler(500)
-def internal_error(e):
-    return render_template("signup.html"), 500

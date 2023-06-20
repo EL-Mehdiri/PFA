@@ -15,6 +15,7 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'mysecretkey'
     app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{DB_NAME}"
+    app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
     db.init_app(app)
     
     
@@ -46,8 +47,9 @@ def create_app():
     #     def inaccessible_callback(self, name, **kwargs):
     #         return redirect(url_for('auth.login'))
     
+    # admin = Admin(app, name='microblog', template_mode='bootstrap3')
+    admin = Admin(app,  name="Task Zineth", template_mode='bootstrap3')
     
-    admin = Admin(app,  name="Task Zineth")
     admin.add_view(UserView(User, db.session))
     admin.add_view(TaskView(Task, db.session))
     admin.add_view(CommentView(Comment, db.session))

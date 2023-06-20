@@ -74,6 +74,7 @@ class UserView(ModelView):
             return True
         else:
             abort(404)
+            
     form_columns = ['username', 'email']
     column_exclude_list = ['password']
     can_create = False
