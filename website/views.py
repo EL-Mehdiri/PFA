@@ -28,8 +28,6 @@ def user_workouts():
     if request.method == 'POST':
         search = request.form.get('search') 
         workouts = Task.query.filter(Task.title.contains(search)).all()
-        
-        # workouts = Task.query.filter_by(workout.title.like('%'+search+'%')).all()
         print(workouts)
         if workouts == []:
             flash('No task found', category='error')
@@ -54,14 +52,14 @@ def user_workout():
 
     endtask = request.form.get('end')
     end_datetime = datetime.strptime(endtask, "%Y-%m-%dT%H:%M")
-    # end = start_datetime.strftime("%Y-%m-%d")
+   
     workout = Task(
         title=request.form.get('title'),
         date_posted=datetime.now(),
         start=start_datetime,
         end=end_datetime,
         descreption=request.form.get('descreption'),
-        # user_id=request.form.get('user_id')
+       
         author=current_user
     )
     
@@ -151,7 +149,7 @@ def calender():
 def group_calender():
     
     events = Group.query.all()
-    #  = Task.query.all()
+  
     
     calendar_events = []
     for event in events:

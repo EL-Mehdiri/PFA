@@ -1,6 +1,5 @@
 from . import db 
 from flask_login import UserMixin, current_user
-# from sqlalchemy.sql import func
 from flask_admin.contrib.sqla import ModelView
 from datetime import datetime
 from flask import abort, flash
@@ -111,19 +110,3 @@ class GroupView(ModelView):
     can_view_details = True
 
 
-    # tasks = db.relationship('Task', backref='group', lazy=True)
-
-# class Task(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(100), nullable=False)
-#     group_id = db.Column(db.Integer, db.ForeignKey('group.id'), nullable=False)
-#     assigned_to = db.relationship('User', secondary='task_assignments')
-
-# # class Userr(db.Model):
-# #     id = db.Column(db.Integer, primary_key=True)
-# #     name = db.Column(db.String(100), nullable=False)
-
-# task_assignments = db.Table('task_assignments',
-#     db.Column('task_id', db.Integer, db.ForeignKey('task.id'), primary_key=True),
-#     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True)
-# )
