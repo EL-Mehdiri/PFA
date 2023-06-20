@@ -1,9 +1,8 @@
-from flask import Flask, redirect, url_for
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from flask_admin import Admin, AdminIndexView, BaseView, expose
-from flask_admin.contrib.sqla import ModelView
+from flask_login import LoginManager
+from flask_admin import Admin
 
 db = SQLAlchemy()
 DB_NAME = 'database.db'
@@ -34,20 +33,7 @@ def create_app():
     def load_user(user_id):
         return User.query.get(user_id)
     
-    # class MyModelView(ModelView):
-    #     def is_accessible(self):
-    #         return current_user.is_authenticated
-        
-    #     def inaccessible_callback(self, name, **kwargs):
-    #         return redirect(url_for('auth.login'))
 
-    # class MyAdminIndexView(AdminIndexView):
-    #     def is_accessible(self):
-    #         return current_user.is_authenticated
-    #     def inaccessible_callback(self, name, **kwargs):
-    #         return redirect(url_for('auth.login'))
-    
-    # admin = Admin(app, name='microblog', template_mode='bootstrap3')
     admin = Admin(app,  name="Task Zineth", template_mode='bootstrap3')
     
     admin.add_view(UserView(User, db.session))
